@@ -68,3 +68,46 @@ blocks:
             - echo "Running security checks..."
             - echo "Deploying to production..."
             - echo "Deployment completed successfully!"
+  - name: E2E
+    dependencies: []
+    task:
+      env_vars:
+        - name: FLASK_APP
+          value: main
+        - name: DATABASE_URL
+          value: 'postgresql://postgres@localhost:5432/postgres'
+        - name: TEST_DATABASE_URL
+          value: 'postgresql://postgres@localhost:5432/postgres'
+        - name: SECRET_KEY
+          value: ci-only-not-a-secret
+        - name: SECURITY_PASSWORD_SALT
+          value: ci-only-not-a-secret
+        - name: R2_ENDPOINT
+          value: 'https://r2.incalid'
+        - name: R2_ACCESS_KEY_ID
+          value: ci
+        - name: R2_SECRET_KEY
+          value: ci
+        - name: R2_BUCKET
+          value: ci
+        - name: R2_PUBLIC_URL
+          value: 'https://r2.invalid'
+        - name: REDIS_URL
+          value: 'redis://localhost:6379/0'
+      jobs:
+        - name: E2E
+          commands:
+            - checkout
+            - sem-version python 3.12
+            - sem-service start postgres
+            - cd backend
+            - pip install -r requirements.txt
+            - flask db upgrade
+            - flask create-admin
+            - flask run --port 8000 &
+            - cd ../frontend
+            - bun install
+            - bun run build
+            - bun run preview --port 5173 &
+            - bunx playwright install --with-deps chromium
+            - bunrun e2e
