@@ -86,7 +86,7 @@ blocks:
           value: 'https://r2.incalid'
         - name: R2_ACCESS_KEY_ID
           value: ci
-        - name: R2_SECRET_KEY
+        - name: R2_SECRET_ACCESS_KEY
           value: ci
         - name: R2_BUCKET
           value: ci
