@@ -38,9 +38,9 @@ blocks:
         - name: FLASK_APP
           value: main
         - name: DATABASE_URL
-          value: 'postgresql://recipes:localhost@db:5432/recipes'
+          value: 'postgresql://postgres@localhost:5432/postgres'
         - name: TEST_DATABASE_URL
-          value: 'postgresql://recipes:localhost@db:5432/recipes'
+          value: 'postgresql://postgres@localhost:5432/postgres'
         - name: SECRET_KEY
           value: ci-only-not-a-secret
         - name: SECURITY_PASSWORD_SALT
