@@ -110,4 +110,4 @@ blocks:
             - bun run build
             - bun run preview --port 5173 &
             - bunx playwright install --with-deps chromium
-            - bunrun e2e
+            - bun run e2e
