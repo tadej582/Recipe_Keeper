@@ -59,6 +59,7 @@ blocks:
           value: 'redis://localhost:6379/0'
   - name: "\U0001F680 Deploy"
     dependencies:
+      - E2E
       - "\U0001F9EA Lint & test"
     task:
       jobs:
