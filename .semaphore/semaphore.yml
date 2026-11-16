@@ -59,6 +59,7 @@ blocks:
           value: 'redis://localhost:6379/0'
   - name: "\U0001F680 Deploy"
     dependencies:
+      - E2E
       - "\U0001F9EA Lint & test"
     task:
       jobs:
@@ -111,3 +112,8 @@ blocks:
             - bun run preview --port 5173 &
             - bunx playwright install --with-deps chromium
             - bun run e2e
+      epilogue:
+        always:
+          commands:
+            - 'cd ~ && cd "$SEMAPHORE_GIT_DIR"  # back to the repository root, wherever the job stopped'
+            - artifact push job frontend/playwright-report --expire-in 2w
