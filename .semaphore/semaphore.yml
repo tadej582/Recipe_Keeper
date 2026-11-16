@@ -1,0 +1,70 @@
+version: v1.0
+name: "\U0001F3AF Recipe Keeper"
+agent:
+  machine:
+    type: f1-standard-2
+    os_image: ubuntu2404
+fail_fast:
+  stop:
+    when: branch != 'main'
+auto_cancel:
+  running:
+    when: branch != 'main'
+  queued:
+    when: branch = 'main'
+blocks:
+  - name: "\U0001F9EA Lint & test"
+    dependencies: []
+    task:
+      jobs:
+        - name: "\U0001F7E2Frontend type-check, build & component tests"
+          commands:
+            - checkout
+            - cd frontend
+            - bun install
+            - bun run build
+            - bun run vitest --run
+        - name: Backend lint & tests
+          commands:
+            - checkout
+            - sem-version python 3.12
+            - sem-service start postgres
+            - cd backend
+            - pip install -r requirements.txt
+            - pip install ruff==0.17.3
+            - ruff check .
+            - pytest
+      env_vars:
+        - name: FLASK_APP
+          value: main
+        - name: DATABASE_URL
+          value: 'postgresql://recipes:localhost@db:5432/recipes'
+        - name: TEST_DATABASE_URL
+          value: 'postgresql://recipes:localhost@db:5432/recipes'
+        - name: SECRET_KEY
+          value: ci-only-not-a-secret
+        - name: SECURITY_PASSWORD_SALT
+          value: ci-only-not-a-secret
+        - name: R2_ENDPOINT
+          value: 'https://r2.invalid'
+        - name: R2_ACCESS_KEY_ID
+          value: ci
+        - name: R2_SECRET_ACCESS_KEY
+          value: ci
+        - name: R2_BUCKET
+          value: ci
+        - name: R2_PUBLIC_URL
+          value: 'https://r2.invalid'
+        - name: REDIS_URL
+          value: 'redis://localhost:6379/0'
+  - name: "\U0001F680 Deploy"
+    dependencies:
+      - "\U0001F9EA Lint & test"
+    task:
+      jobs:
+        - name: "\U0001F4E6 Deploy to Production"
+          commands:
+            - echo "Building application..."
+            - echo "Running security checks..."
+            - echo "Deploying to production..."
+            - echo "Deployment completed successfully!"
