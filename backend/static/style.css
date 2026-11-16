@@ -1,0 +1,125 @@
+:root {
+  --bg: #f6f5f2;
+  --card: #ffffff;
+  --text: #1f2328;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --accent: #2563eb;
+  --danger: #b42318;
+  --radius: 8px;
+}
+
+body {
+  margin: 0;
+}
+
+main {
+  margin: 100px;
+  box-sizing: border-box;
+  height: 90vh;
+}
+
+h1 {
+  margin-right: 330px;
+  box-sizing: border-box;
+  
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 300px;
+  padding-left: 10px;
+  box-sizing: border-box;
+}
+
+.link {
+  border-style: none;
+}
+
+
+
+input {
+  height: 30px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  margin: 10px;
+}
+
+p {
+  margin-left: 40px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  width: 220px;
+
+}
+
+  
+
+button {
+  height: 30px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--accent);
+  color: var(--bg);
+}
+
+ul {
+  list-style-type: none;
+}
+
+/* ... */
+
+li {
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+
+  margin-top: 10px;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+}
+
+strong {
+  align-self: flex-start;
+  justify-self: flex-start;
+}
+
+
+img {
+  height: 200px;
+  width: 200px;
+  border-radius: var(--radius);
+}
+
+
+
+/* ... */
+
+.tag {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.1rem 0.55rem;
+  border-radius: 999px;
+  background: #eef2ff;
+  color: #3730a3;
+  font-size: 0.85rem;
+}
+
+
+
+.danger {
+  color: var(--bg);
+  background: var(--danger);
+}
+
+
+.fs-gap {
+  padding-left: 32px;
+  box-sizing: border-box;
+}
