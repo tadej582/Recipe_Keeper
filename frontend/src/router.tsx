@@ -20,7 +20,7 @@ const rootRoute = createRootRoute({
                     Recipes
                 </Link>
                 <Link to="/add" className="text-blue-600">
-                    New
+                    Add
                 </Link>
             </nav>
             <Outlet /> {/* the current page renders here */}
