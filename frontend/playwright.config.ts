@@ -1,5 +1,5 @@
 import { defineConfig } from "@playwright/test";
-import type from "types.ts";
+
 
 export default defineConfig({
     testDir: "./e2e",
