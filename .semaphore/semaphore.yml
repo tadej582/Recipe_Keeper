@@ -23,6 +23,7 @@ blocks:
             - cd frontend
             - bun install
             - bun run build
+            - bun run lint
             - bun run vitest --run
         - name: Backend lint & tests
           commands:
