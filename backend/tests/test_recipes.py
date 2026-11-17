@@ -17,7 +17,7 @@ def test_create_requires_auth(client):
 def test_create_then_list(auth_client):
     # the logged-in client carries the session cookie automatically
     resp = auth_client.post("/api/recipes", json={"name": "Pancakes", "tag": "breakfast"})
-    assert resp.status_code == 201
+    assert resp.status_code == 204
     assert resp.get_json()["name"] == "Pancakes"
 
     listed = auth_client.get("/api/recipes").get_json()
