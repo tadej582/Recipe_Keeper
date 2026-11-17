@@ -1,5 +1,6 @@
 # The JSON REST API,as an APIFlask blueprint. url_prefix="/api" means the
 # routes below say "/recipes" and are served at "/api/recipes".
+import sys
 from apiflask import APIBlueprint, Schema
 from apiflask.fields import Integer, String
 from apiflask.validators import Length
