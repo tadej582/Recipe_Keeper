@@ -6,7 +6,7 @@ export default defineConfig({
     reporter: [["list"], ["html", { open: "never" }]], // console + playwright-reporter/
     use: {
         baseURL: "http://localhost:5173", // your running React app
-        trace: "on", // full step-by-step reccording, kept only on failure
+        trace: "retain-on-failure", // full step-by-step reccording, kept only on failure
         screenshot: "only-on-failure", // a snapshot at the moment it failed
         video: "retain-on-failure", // a video of the run, kept only on failure
     },
