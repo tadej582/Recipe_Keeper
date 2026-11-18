@@ -11,7 +11,7 @@ from models import user_datastore
 # TEST_DATABASE_URL; locally its's the db-test container from docker-compose.yml.
 TEST_DATABASE_URL = os.environ.get(
     "TEST_DATABASE_URL",
-    "postgresql://recipes:devpassword@db:5432/recipes_test",
+    "postgresql://recipes:devpassword@db-test:5432/recipes_test",
 )
 
 
