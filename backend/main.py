@@ -66,6 +66,13 @@ def create_app(test_config=None):
         response.set_cookie("XSRF-TOKEN", generate_csrf(), samesite="Lax")
         return response
 
+
+    @app.get("/health")
+    def health():
+        """Liveness check for the platform (Render pings this)."""
+        return {"status": "ok"}
+    
+
     return app
    
 

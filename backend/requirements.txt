@@ -6,13 +6,19 @@ flask-cors
 
 psycopg[binary]
 
+# Security
 flask-security-too
 argon2-cffi
 flask-wtf
 boto3
 
+# Job
 celery
 redis
 pillow
 
+# For testing backend
 pytest
+
+# Runs the server
+gunicorn
