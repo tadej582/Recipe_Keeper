@@ -58,15 +58,20 @@ blocks:
           value: 'https://r2.invalid'
         - name: REDIS_URL
           value: 'redis://localhost:6379/0'
-  - name: "\U0001F680 Deploy"
+  - name: "\U0001F680 Deploy staging"
     dependencies:
       - E2E
       - "\U0001F9EA Lint & test"
     task:
       jobs:
-        - name: "\U0001F4E6 Deploy app"
+        - name: Trigger Render deploys
           commands:
-            - echo "Success"
+            - curl -fsS -X POST "$RENDER_STAGING_BACKEND_HOOK&ref=$SEMAPHORE_GIT_SHA"
+            - curl -fsS -X POST "$RENDER_STAGING_FRONTEND_HOOK&ref=$SEMAPHORE_GIT_SHA"
+      secrets:
+        - name: render-staging-hooks
+    run:
+      when: branch = 'main'
   - name: E2E
     dependencies: []
     task:
