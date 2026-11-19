@@ -28,7 +28,6 @@ def create_app(test_config=None):
     # send that cookie automatically, we add CSRF protection so only your own app
     # can trigger writes; the anti-CSRF token stays valid for the whole session.
     app.config["WTF_CSRF_TIME_LIMIT"] = None
-    app.config["WTF_CSRF_SSL_STRICT"] = False
 
 
     # Logging in happens before you have a session, so Flask-Security lets its own

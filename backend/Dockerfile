@@ -10,4 +10,4 @@ COPY . .
 
 # Production start command (Render). docker compose overrides it locally.
 # "main:create_app()" tells gunicorn to call the app factory to get the app.
-CMD ["sh", "-c", "flask --app main db upgrade && gunicorn --bind 0.0.0.0:${PORT:-8000} --access-logfile - --error-logfile - --log-level debug 'main:create_app()'"]
+CMD ["sh", "-c", "flask --app main db upgrade && gunicorn --bind 0.0.0.0:${PORT:-8000} 'main:create_app()'"]
