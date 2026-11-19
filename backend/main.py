@@ -1,7 +1,7 @@
 import os
 
 from apiflask import APIFlask
-from flask_wtf.csrf import generate_csrf
+from flask_wtf.csrf import generate_csrf, CSRFError
 
 from api import api
 from commands import register_commands
@@ -71,6 +71,12 @@ def create_app(test_config=None):
     def health():
         """Liveness check for the platform (Render pings this)."""
         return {"status": "ok"}
+
+
+    @app.errorhandler(CSRFError)
+    def handle_csrf_error(error):
+        app.logger.error("CSRF rejected request: %s", error.description)
+        return {"message": error.description}, 400
     
 
     return app
