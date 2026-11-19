@@ -120,3 +120,6 @@ blocks:
           commands:
             - 'cd ~ && cd "$SEMAPHORE_GIT_DIR"  # back to the repository root, wherever the job stopped'
             - artifact push job frontend/playwright-report --expire-in 2w
+promotions:
+  - name: Deploy production
+    pipeline_file: pipeline_2.yml
