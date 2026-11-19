@@ -1,7 +1,7 @@
 import os
 
 from apiflask import APIFlask
-from flask_wtf.csrf import generate_csrf, CSRFError
+from flask_wtf.csrf import CSRFError, generate_csrf
 
 from api import api
 from commands import register_commands
