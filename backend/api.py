@@ -5,6 +5,7 @@ from apiflask.fields import Integer, String
 from apiflask.validators import Length
 from flask import abort, request
 from flask_security import auth_required, current_user, roles_required
+from flask_wtf.csrf import CSRFError
 
 from extensions import db
 from models import Recipe
@@ -12,6 +13,12 @@ from storage import store_photo
 from tasks import make_thumbnail
 
 api = APIBlueprint("api",__name__, url_prefix="/api", tag="Recipes")
+
+
+@api.errorhandler(CSRFError)
+def handle_csrf_error(error):
+    api.logger.error("CSRF rejected request: %s", error.description)
+    return {"message": error.description}, 400
 
 
 class RecipeIn(Schema):
